@@ -41,7 +41,8 @@ namespace Lektion20.Controllers
             if (authorization == null)
             {
                 // Kick off authorization request
-                client.RequestUserAuthorization();
+                List<string> scope = new List<string> { "read_stream" };
+                client.RequestUserAuthorization(scope);
                 return View();
             }
             else
