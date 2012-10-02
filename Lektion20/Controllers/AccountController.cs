@@ -11,6 +11,8 @@ using Lektion20.Models.Repositories.Abstract;
 using DotNetOpenAuth.ApplicationBlock;
 using System.Configuration;
 using DotNetOpenAuth.OAuth2;
+using System.Net;
+using DotNetOpenAuth.ApplicationBlock.Facebook;
 
 namespace Lektion20.Controllers
 {
@@ -40,6 +42,20 @@ namespace Lektion20.Controllers
                 // Kick off authorization request
                 client.RequestUserAuthorization();
                 return View();
+            }
+            else
+            {
+                var request = WebRequest.Create("https://graph.facebook.com/me?access_token="
+                        + Uri.EscapeDataString(authorization.AccessToken));
+                using (var response = request.GetResponse())
+                {
+                    using (var responseStream = response.GetResponseStream())
+                    {
+                        var graph = FacebookGraph.Deserialize(responseStream);
+                        FormsAuthentication.SetAuthCookie(graph.Name, false);
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
             }
 
             return View();
