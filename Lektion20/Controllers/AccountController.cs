@@ -34,6 +34,14 @@ namespace Lektion20.Controllers
 
         public ActionResult LogOn()
         {
+            IAuthorizationState authorization = client.ProcessUserAuthorization();
+            if (authorization == null)
+            {
+                // Kick off authorization request
+                client.RequestUserAuthorization();
+                return View();
+            }
+
             return View();
         }
 
