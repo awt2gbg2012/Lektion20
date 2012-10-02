@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Ninject;
 using Lektion20.Models.Repositories.Abstract;
-using FacebookPrototype.Models.Entities;
+using Lektion20.Models.Entities;
 using Lektion20.Models.Repositories;
 using System.Configuration;
 

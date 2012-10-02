@@ -5,8 +5,8 @@ using System.Web;
 using Lektion20.Models.Repositories.Abstract;
 using System.Data.Objects;
 using System.Data.Entity;
-using FacebookPrototype.Models.Entities.Abstract;
-using FacebookPrototype.Models.Contexts;
+using Lektion20.Models.Entities.Abstract;
+using Lektion20.Models.Contexts;
 
 namespace Lektion20.Models.Repositories
 {

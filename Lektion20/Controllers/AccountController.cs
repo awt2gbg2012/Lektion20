@@ -6,11 +6,18 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using Lektion20.Models;
+using Lektion20.Models.Entities;
+using Lektion20.Models.Repositories.Abstract;
 
 namespace Lektion20.Controllers
 {
     public class AccountController : Controller
     {
+        private IRepository<User> _userRepo;
+        public AccountController(IRepository<User> userRepo)
+        {
+            _userRepo = userRepo;
+        }
 
         //
         // GET: /Account/LogOn

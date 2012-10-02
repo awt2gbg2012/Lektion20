@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace FacebookPrototype.Models.Entities.Abstract
+namespace Lektion20.Models.Entities.Abstract
 {
     public interface IEntity
     {

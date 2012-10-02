@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-using FacebookPrototype.Models.Entities.Abstract;
+using Lektion20.Models.Entities.Abstract;
 
 namespace Lektion20.Models.Repositories.Abstract
 {

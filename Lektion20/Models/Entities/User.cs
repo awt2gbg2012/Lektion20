@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using FacebookPrototype.Models.Entities.Abstract;
+using Lektion20.Models.Entities.Abstract;
 
-namespace FacebookPrototype.Models.Entities
+namespace Lektion20.Models.Entities
 {
     public class User : IEntity
     {

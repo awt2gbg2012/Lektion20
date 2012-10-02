@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Lektion20.Web.Infrastructure;
 using System.Data.Entity;
-using FacebookPrototype.Models.Contexts;
+using Lektion20.Models.Contexts;
 
 namespace Lektion20
 {

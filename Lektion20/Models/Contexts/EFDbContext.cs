@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-using FacebookPrototype.Models.Entities;
+using Lektion20.Models.Entities;
 
-namespace FacebookPrototype.Models.Contexts
+namespace Lektion20.Models.Contexts
 {
     public class EFDbContext : DbContext
     {
