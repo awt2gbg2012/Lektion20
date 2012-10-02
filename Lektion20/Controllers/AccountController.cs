@@ -8,6 +8,9 @@ using System.Web.Security;
 using Lektion20.Models;
 using Lektion20.Models.Entities;
 using Lektion20.Models.Repositories.Abstract;
+using DotNetOpenAuth.ApplicationBlock;
+using System.Configuration;
+using DotNetOpenAuth.OAuth2;
 
 namespace Lektion20.Controllers
 {
