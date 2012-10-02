@@ -22,6 +22,13 @@ namespace Lektion20.Controllers
             _userRepo = userRepo;
         }
 
+        private static readonly FacebookClient client = new FacebookClient
+        {
+            ClientIdentifier = ConfigurationManager.AppSettings["facebookAppID"],
+            ClientCredentialApplicator = ClientCredentialApplicator.PostParameter(
+            ConfigurationManager.AppSettings["facebookAppSecret"]),
+        };
+
         //
         // GET: /Account/LogOn
 
