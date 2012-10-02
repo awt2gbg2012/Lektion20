@@ -52,6 +52,10 @@ namespace Lektion20.Controllers
                     using (var responseStream = response.GetResponseStream())
                     {
                         var graph = FacebookGraph.Deserialize(responseStream);
+                        if (graph.Id.ToString() == ConfigurationManager.AppSettings["facebookAppOwnerID"])
+                        {
+                            PersistLongTermAccessToken(graph.Id, graph.Name, authorization.AccessToken);
+                        }
                         FormsAuthentication.SetAuthCookie(graph.Name, false);
                         return RedirectToAction("Index", "Home");
                     }
