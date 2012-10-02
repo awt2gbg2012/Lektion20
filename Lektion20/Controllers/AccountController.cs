@@ -13,6 +13,7 @@ using System.Configuration;
 using DotNetOpenAuth.OAuth2;
 using System.Net;
 using DotNetOpenAuth.ApplicationBlock.Facebook;
+using System.IO;
 
 namespace Lektion20.Controllers
 {
@@ -61,9 +62,38 @@ namespace Lektion20.Controllers
                     }
                 }
             }
-
-            return View();
         }
+
+        public void PersistLongTermAccessToken(long facebookID, string name, string existingAccessToken)
+        {
+            var longTermAccessTokenEndPoint = string.Format(@"https://graph.facebook.com/oauth/access_token?client_id={0}&client_secret={1}&grant_type=fb_exchange_token&fb_exchange_token={2}",
+                ConfigurationManager.AppSettings["facebookAppID"],
+                ConfigurationManager.AppSettings["facebookAppSecret"],
+                existingAccessToken);
+            var request = WebRequest.Create(longTermAccessTokenEndPoint);
+            using (var response = request.GetResponse())
+            {
+                using (var responseStream = response.GetResponseStream())
+                {
+                    var streamReader = new StreamReader(responseStream);
+                    string[] streamResult = streamReader.ReadToEnd().Split('&');
+                    string longTermAccessToken = streamResult[0]
+                        .Substring(streamResult[0].IndexOf("=") + 1);
+                    var user = _userRepo.FindAll(u => u.FacebookID == facebookID).FirstOrDefault();
+                    if (null == user)
+                        user = new User
+                        {
+                            ID = Guid.NewGuid(),
+                            FacebookID = facebookID,
+                            FullName = name,
+                            LongTermAccessToken = longTermAccessToken
+                        };
+                    else
+                        user.LongTermAccessToken = longTermAccessToken;
+                    _userRepo.Save(user);
+                }
+            }
+}
 
         //
         // POST: /Account/LogOn
